@@ -4,7 +4,7 @@
 
 <div class="wrapper">
 	<header>
-		<span> NEWSAPP </span>
+		<a href="/" class="site-name"> NEWSAPP </a>
 		<button class="open-nav" on:click={openNav}><div /></button>
 	</header>
 
@@ -40,7 +40,7 @@
 		align-items: center;
 		align-content: center;
 		border-bottom: 1px solid #ededed;
-		> span {
+		> .site-name {
 			font-size: 24px;
 			font-weight: 700;
 			letter-spacing: 2.4px;

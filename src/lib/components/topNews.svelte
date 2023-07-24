@@ -1,7 +1,12 @@
+<script>
+	export let title = "",
+		myClass = "";
+</script>
+
 <div>
 	<h2>Top Headlines</h2>
-	<h3>class</h3>
-	<h2 class="title">Silicon Valley Bank Collapse Threatens VC Industry With $500B Markdown</h2>
+	<h3>{myClass}</h3>
+	<h2 class="title">{title}</h2>
 	<div class="img" />
 </div>
 

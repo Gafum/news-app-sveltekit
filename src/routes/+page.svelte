@@ -1,30 +1,12 @@
 <script>
-	import TopNews from "../lib/components/topNews.svelte";
-	import OneNews from "../lib/components/oneNews.svelte";
+	import TopNews from "$lib/components/topNews.svelte";
+	import OneNews from "$lib/components/oneNews.svelte";
+	import findMax from "$lib/functions/findMax";
+	/** @type {import('./$types').PageData} */
+	export let data;
 
-	const newsList = [
-		{
-			title: "Big Tech is making its stuff slower and stupider — on purpose",
-			myImg: "#000",
-			myClass: "Reuters",
-			myDescription:
-				"Massive cuts at tech giants like Meta and Microsoft dominate headlines, but don’t tell the whole story. Here’s a full picture of job cuts around the world."
-		},
-		{
-			title: "Global Layoffs Extend Far Beyond Big Tech",
-			myImg: "#000",
-			myClass: "Bloomberg",
-			myDescription:
-				"Google, Amazon, and Meta are making their core products worse — on purpose. The user's experience has become subordinate"
-		},
-		{
-			title: "Work Shift: The Future of Work at SXSW",
-			myImg: "#000",
-			myClass: "Bloomberg",
-			myDescription:
-				"Welcome to this week’s edition of the Work Shift newsletter. If you aren’t signed up already to receive it, you can do so here"
-		}
-	];
+	let top = data.data[findMax(data.data.map(({ likes }) => Number(likes)))];
+	const newsList = data.data;
 </script>
 
 <nav>
@@ -35,10 +17,10 @@
 	<li><a href="/science">Science</a></li>
 </nav>
 
-<TopNews />
+<TopNews title={top.title} myClass={top.class} />
 
 {#each newsList as news}
-	<OneNews {...news} />
+	<OneNews title={news.title} myClass={news.class} myDescription={news.content} />
 {:else}
 	<h2>Loading</h2>
 {/each}
