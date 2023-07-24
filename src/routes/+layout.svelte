@@ -80,7 +80,6 @@
 
 	main {
 		flex: 1 1 auto;
-		padding: 0 20px;
 	}
 
 	footer {
