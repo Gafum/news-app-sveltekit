@@ -21,6 +21,8 @@
 		<li><a href="/science">Science</a></li>
 	</nav>
 
+	<h2>Top Headlines</h2>
+
 	<a href="/news/{top.id}">
 		<TopNews title={top.title} myClass={top.class} />
 	</a>

@@ -4,7 +4,6 @@
 </script>
 
 <div>
-	<h2>Top Headlines</h2>
 	<h3><a href="/{myClass.toLowerCase()}">{myClass}</a></h3>
 	<h2 class="title">{title}</h2>
 	<div class="img" />

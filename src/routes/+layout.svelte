@@ -1,11 +1,14 @@
 <script>
-	function openNav(params) {}
+	let navActive = false;
+	function openNav() {
+		navActive = !navActive;
+	}
 </script>
 
 <div class="wrapper">
 	<header>
 		<a href="/" class="site-name"> NEWSAPP </a>
-		<button class="open-nav" on:click={openNav}><div /></button>
+		<button on:click={openNav}><div class="open-nav"><div class:active={navActive} /></div></button>
 	</header>
 
 	<main>
@@ -45,6 +48,9 @@
 			font-weight: 700;
 			letter-spacing: 2.4px;
 		}
+		> button {
+			height: 24px;
+		}
 		.open-nav {
 			height: 3px;
 			width: 20px;
@@ -53,10 +59,15 @@
 			justify-content: center;
 			align-items: center;
 			align-content: center;
+
 			> div {
 				background-color: #000;
 				height: 100%;
 				width: 100%;
+				transition: width 0.2s;
+				&.active {
+					width: 0;
+				}
 				&::before,
 				&::after {
 					content: "";
@@ -64,15 +75,25 @@
 					width: 100%;
 					background-color: #000;
 					position: absolute;
+					transition: all 0.2s;
 				}
+
 				&::before {
 					top: 220%;
 					left: 0;
+				}
+				&.active::before {
+					top: 0;
+					transform: rotate(45deg);
 				}
 
 				&::after {
 					bottom: 220%;
 					left: 0;
+				}
+				&.active::after {
+					bottom: 0;
+					transform: rotate(-45deg);
 				}
 			}
 		}
