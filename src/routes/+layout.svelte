@@ -1,14 +1,32 @@
 <script>
+	import categoryList from "$lib/const/categoryList.js";
 	let navActive = false;
 	function openNav() {
 		navActive = !navActive;
 	}
+	function closeNav() {
+		if (navActive) {
+			navActive = false;
+		}
+	}
 </script>
+
+<svelte:document on:click={closeNav} />
 
 <div class="wrapper">
 	<header>
 		<a href="/" class="site-name"> NEWSAPP </a>
-		<button on:click={openNav}><div class="open-nav"><div class:active={navActive} /></div></button>
+		<button on:click|stopPropagation={openNav}>
+			<div class="open-nav">
+				<div class:active={navActive} />
+			</div>
+		</button>
+
+		<nav class:showen={navActive}>
+			{#each categoryList as category}
+				<li><a href="/category/{category}">{category}</a></li>
+			{/each}
+		</nav>
 	</header>
 
 	<main>
@@ -43,6 +61,7 @@
 		align-items: center;
 		align-content: center;
 		border-bottom: 1px solid #ededed;
+
 		> .site-name {
 			font-size: 24px;
 			font-weight: 700;
@@ -96,6 +115,30 @@
 					transform: rotate(-45deg);
 				}
 			}
+		}
+	}
+
+	nav {
+		transition: all 0.4s;
+		transform: scaleY(0);
+		transform-origin: top;
+		position: absolute;
+		width: 100%;
+		top: 100%;
+		left: 0;
+		background-color: white;
+		padding: 20px;
+		border-bottom: 1px solid #ededed;
+		display: flex;
+		flex-direction: column;
+		gap: 26px;
+		&.showen {
+			transform: scaleY(1);
+		}
+		a {
+			text-transform: uppercase;
+			font-size: 22px;
+			font-weight: 700;
 		}
 	}
 

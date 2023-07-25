@@ -7,7 +7,7 @@
 
 <div class="oneNews">
 	<h3>
-		<a href="/{myClass.toLowerCase()}">{myClass}</a>
+		<a href="/category/{myClass.toLowerCase()}">{myClass}</a>
 	</h3>
 	<div class="main-content">
 		<h2 class="title">{title}</h2>
