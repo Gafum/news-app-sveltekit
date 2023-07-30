@@ -1,0 +1,28 @@
+<script>
+	import CustomButtom from "$lib/components/customButtom.svelte";
+	import CustomInput from "$lib/components/customInput.svelte";
+</script>
+
+<form action="?/login" method="post">
+	<h2>Register</h2>
+	<CustomInput myName="email" placeholder="Your Email" type="email" />
+	<CustomInput myName="password" placeholder="password" type="password" />
+	<a href="/user/login">Account already exist!</a>
+	<CustomButtom title="Sing Up" />
+</form>
+
+<style>
+	form {
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		align-content: center;
+		gap: 10px;
+	}
+	a {
+		text-decoration: underline;
+		text-align: left;
+	}
+</style>

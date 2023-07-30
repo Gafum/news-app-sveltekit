@@ -1,5 +1,7 @@
 <script>
 	import categoryList from "$lib/const/categoryList.js";
+	import { goto } from "$app/navigation";
+	import CustomInput from "$lib/components/customInput.svelte";
 	let navActive = false;
 	function openNav() {
 		navActive = !navActive;
@@ -8,6 +10,13 @@
 		if (navActive) {
 			navActive = false;
 		}
+	}
+	function goToSearch(event) {
+		let { myNews } = Object.fromEntries(new FormData(event.target).entries());
+		if (!myNews || myNews.length <= 0) return;
+		event.target.querySelector("input").value = "";
+		closeNav();
+		goto(`/search?text=${myNews}`);
 	}
 </script>
 
@@ -23,8 +32,11 @@
 		</button>
 
 		<nav class:showen={navActive}>
+			<form on:submit|preventDefault={goToSearch}>
+				<CustomInput placeholder="Find News..." myName="myNews" />
+			</form>
 			{#each categoryList as category}
-				<li><a href="/category/{category}">{category}</a></li>
+				<div><a href="/category/{category}">{category}</a></div>
 			{/each}
 		</nav>
 	</header>
@@ -35,12 +47,11 @@
 
 	<footer>
 		<div class="link">
-			<a href="/login">Log In</a>
+			<a href="/user">Account</a>
 			<a href="/about">About Us</a>
 			<a href="/publishers">Publishers</a>
-			<a href="/sitemap">Sitemap</a>
 		</div>
-		<div class="powered">Powered by Gafum</div>
+		<div class="powered">Powered by <span>Gafum</span></div>
 	</footer>
 </div>
 
@@ -52,6 +63,7 @@
 		min-height: 100lvh;
 	}
 	header {
+		z-index: 100;
 		position: sticky;
 		top: 0;
 		background-color: white;
@@ -166,6 +178,11 @@
 		.powered {
 			margin-top: 28px;
 			font-size: 12px;
+			span {
+				font-weight: 700;
+				font-size: 12px;
+				color: #096ffa;
+			}
 		}
 	}
 </style>

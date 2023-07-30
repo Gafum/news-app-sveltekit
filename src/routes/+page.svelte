@@ -4,8 +4,9 @@
 	import findMax from "$lib/functions/findMax";
 	import categoryList from "$lib/const/categoryList.js";
 	export let data;
-	let top, newsList;
-	if (data) {
+	let top = { id: "1", title: "Waiting...", class: "Technology" },
+		newsList = [];
+	if (data && data.data) {
 		top = data.data[findMax(data.data.map(({ likes }) => Number(likes)))];
 		newsList = data.data;
 	} else {
@@ -16,7 +17,7 @@
 <div class="wrapper">
 	<nav>
 		{#each categoryList as category}
-			<li><a href="/category/{category}">{category}</a></li>
+			<div><a href="/category/{category}">{category}</a></div>
 		{/each}
 	</nav>
 
@@ -37,6 +38,8 @@
 		padding: 0 20px;
 	}
 	nav {
+		max-width: 95vw;
+		width: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;

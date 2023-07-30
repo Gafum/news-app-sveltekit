@@ -13,7 +13,7 @@
 		<h2 class="title">{title}</h2>
 		<div class="img" style="background-color: {myImg};" />
 	</div>
-	<p class="description">{myDescription}</p>
+	<p class="description">{myDescription.slice(0, 150)}</p>
 </div>
 
 <style lang="scss">

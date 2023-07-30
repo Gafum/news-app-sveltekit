@@ -5,10 +5,13 @@
 
 	export let data;
 	let newsList = [];
-	if (data) {
-		newsList = data.data;
-	} else {
-		console.log("404");
+	$: {
+		if (data) {
+			newsList = data.data;
+		} else {
+			newsList = [];
+			console.log("404");
+		}
 	}
 </script>
 

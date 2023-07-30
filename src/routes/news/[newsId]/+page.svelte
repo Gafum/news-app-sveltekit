@@ -3,13 +3,15 @@
 	export let data;
 	let title = "",
 		content = "";
-	if (data) {
-		title = data.title;
-		content = data.content;
+	$: {
+		if (data) {
+			title = data.title;
+			content = data.content;
+		}
 	}
 </script>
 
-<div style="background-color: #096ffa;" class="img" />
+<div style="background-color: #096ffa;" class="one-news-img" />
 <div class="wrapper">
 	<h2>{title}</h2>
 	<p>{content}</p>
@@ -19,7 +21,7 @@
 	.wrapper {
 		padding: 0 20px;
 	}
-	.img {
+	.one-news-img {
 		height: 270px;
 		width: 100%;
 		border-bottom-left-radius: 20px;
