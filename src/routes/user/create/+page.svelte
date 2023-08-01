@@ -2,18 +2,29 @@
 	import CustomInput from "$lib/components/customInput.svelte";
 	import categoryList from "$lib/const/categoryList";
 	import CustomButtom from "$lib/components/customButtom.svelte";
+
+	export let data;
 </script>
 
-<form action="?/createNews" method="post">
-	<CustomInput myName="myTitle" placeholder="Title..." />
-	<textarea required name="myContent" id="myContent" cols="30" rows="10" placeholder="Content..." />
-	<select name="myClass" required>
-		{#each categoryList as category}
-			<option value={category}>{category}</option>
-		{/each}
-	</select>
-	<CustomButtom title="Create" />
-</form>
+{#if data.data}
+	<form action="?/createNews" method="post">
+		<CustomInput myName="myTitle" placeholder="Title..." />
+		<textarea
+			required
+			name="myContent"
+			id="myContent"
+			cols="30"
+			rows="10"
+			placeholder="Content..."
+		/>
+		<select name="myClass" required>
+			{#each categoryList as category}
+				<option value={category}>{category}</option>
+			{/each}
+		</select>
+		<CustomButtom title="Create" />
+	</form>
+{/if}
 
 <style lang="scss">
 	form {

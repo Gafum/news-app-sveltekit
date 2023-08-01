@@ -1,30 +1,34 @@
-import supabase from "$lib/db";
-import { redirect } from "@sveltejs/kit";
-import { fail } from "assert";
+import { redirect, fail } from "@sveltejs/kit";
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ url }) {
+export async function load({ url, locals: { supabase } }) {
+	/* Get Params */
 	let searchText = url.searchParams.get("text");
 	if (!searchText) return { data: [] };
+
+	/* Request */
 	let { data, error } = await supabase
 		.from("news")
 		.select("*")
 		.textSearch("content", searchText.toString());
+
+	/* Catch Error */
 	if (error) {
 		console.log(error);
 		return { data: [] };
 	}
-	console.log("my Data:", data);
+
 	return { data };
 }
 
 /** @type {import('./$types').Actions} */
 export const actions = {
 	search: async ({ request }) => {
+		/* Get Params */
 		const data = await request.formData();
 		let searchText = data.get("searchText");
 		if (!searchText) return fail(400);
-		console.log(searchText);
+
 		throw redirect(303, `/search?text=${searchText}`);
 	}
 };

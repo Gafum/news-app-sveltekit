@@ -7,7 +7,7 @@
 	let top = { id: "1", title: "Waiting...", class: "Technology" },
 		newsList = [];
 	if (data && data.data) {
-		top = data.data[findMax(data.data.map(({ likes }) => Number(likes)))];
+		top = data.data[findMax(data.data.map(({ views }) => Number(views)))];
 		newsList = data.data;
 	} else {
 		console.log("404");

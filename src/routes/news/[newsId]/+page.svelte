@@ -1,12 +1,12 @@
 <script>
 	/** @type {import('./$types').PageData} */
 	export let data;
-	let title = "",
-		content = "";
+	let { title = "", content = "", author = "" } = data;
 	$: {
 		if (data) {
 			title = data.title;
 			content = data.content;
+			author = data.author;
 		}
 	}
 </script>
@@ -14,6 +14,7 @@
 <div style="background-color: #096ffa;" class="one-news-img" />
 <div class="wrapper">
 	<h2>{title}</h2>
+	<h4 class="create-by">{author}</h4>
 	<p>{content}</p>
 </div>
 
@@ -29,8 +30,13 @@
 		background-size: cover;
 	}
 	h2,
-	p {
+	p,
+	.create-by {
 		margin-top: 16px;
 		text-align: left;
+	}
+	.create-by {
+		text-align: left;
+		font-size: 14px;
 	}
 </style>

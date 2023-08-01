@@ -3,7 +3,7 @@
 	import CustomInput from "$lib/components/customInput.svelte";
 </script>
 
-<form action="?/register" method="post">
+<form action="?/login" method="post">
 	<h2>Log In</h2>
 	<CustomInput myName="email" placeholder="Your Email" type="email" />
 	<CustomInput myName="password" placeholder="password" type="password" />
