@@ -2,21 +2,34 @@
 	import CustomInput from "$lib/components/customInput.svelte";
 	import categoryList from "$lib/const/categoryList";
 	import CustomButtom from "$lib/components/customButtom.svelte";
-	export let mytitle = "",
+	export let myTitle = "",
 		content = "",
-		submitText = "Create";
+		submitText = "Create",
+		myClass = categoryList[0];
 </script>
 
-<CustomInput myName="myTitle" placeholder="Title..." value={mytitle} />
-<CustomInput myName="myContent" placeholder="Content..." isTextArea={true} value={content} />
-<select name="myClass" required>
-	{#each categoryList as category}
-		<option value={category}>{category}</option>
-	{/each}
-</select>
-<CustomButtom title={submitText} />
+<div class="main-form">
+	<CustomInput myName="myTitle" placeholder="Title..." value={myTitle} />
+	<CustomInput myName="myContent" placeholder="Content..." isTextArea={true} value={content} />
+	<select name="myClass" required value={myClass}>
+		{#each categoryList as category}
+			<option value={category}>{category}</option>
+		{/each}
+	</select>
+	<CustomButtom title={submitText} />
+</div>
 
 <style>
+	.main-form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		align-content: center;
+		width: 100%;
+		padding: 20px;
+		gap: 20px;
+	}
 	select {
 		appearance: none;
 		border: 1px solid #000;

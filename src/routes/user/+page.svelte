@@ -17,13 +17,13 @@
 		</h1>
 		<div class="myNews">
 			{#if myNews.length > 0}
-				<h2>My News <button class="plus-btn" on:click={() => goto("/user/create")}>+</button></h2>
+				<h2>My News <button class="plus-btn" on:click={() => goto("/news/create")}>+</button></h2>
 				<ListGenerator newsList={myNews} />
 			{:else}
 				<h2>You don't have news</h2>
 				<p>
 					But you can create them here:
-					<button style="font-weight: bold;" on:click={() => goto("/user/create")}>
+					<button style="font-weight: bold;" on:click={() => goto("/news/create")}>
 						Create News
 					</button>
 				</p>

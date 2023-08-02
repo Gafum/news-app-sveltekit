@@ -3,26 +3,19 @@
 	import MainForm from "$lib/components/mainForm.svelte";
 	import { goto } from "$app/navigation";
 
-	export let data;
+	export let data = false;
 </script>
 
 {#if data.data}
-	<form action="?/createNews" method="post">
-		<MainForm />
+	<form action="?/updateNews" method="post">
+		<MainForm {...data.data} submitText="Update" />
 	</form>
 {:else}
 	<CustomButtom title="Login" on:click={() => goto("/login")} />
 {/if}
 
-<style lang="scss">
+<style>
 	form {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		align-content: center;
 		width: 100%;
-		padding: 20px;
-		gap: 20px;
 	}
 </style>
