@@ -2,11 +2,14 @@ import categoryList from "$lib/const/categoryList";
 
 import { redirect, fail } from "@sveltejs/kit";
 
+let myId = 1;
+
 /** @type {import('./$types').PageLoad} */
 export async function load({ url, parent, locals: { supabase } }) {
 	/* Get Params */
 	let newsId = url.searchParams.get("id");
 	if (!newsId) throw fail(404, { message: "Not found" });
+	myId = newsId;
 
 	/* Check for Auth */
 	const { session } = await parent();
@@ -41,3 +44,37 @@ export async function load({ url, parent, locals: { supabase } }) {
 
 	return { data: myResponse };
 }
+
+/** @type {import('./$types').Actions} */
+export const actions = {
+	updateNews: async ({ request, locals: { supabase, getSession } }) => {
+		/* Get user`s email */
+		const session = await getSession();
+		if (!session) return fail(400);
+
+		/* Get Params */
+		const params = await request.formData();
+		let title = params.get("myTitle");
+		let content = params.get("myContent");
+		let myClass = params.get("myClass");
+		if (!title || !content || !categoryList.includes(myClass)) {
+			return fail(400, "Give the right data");
+		}
+
+		/* check Id */
+		if (!myId) return fail(404, { message: "Not found" });
+
+		/* main request */
+		const { data, error } = await supabase
+			.from("news")
+			.update([{ title, content, class: myClass }])
+			.eq("id", myId)
+			.select();
+
+		if (error) {
+			throw redirect(303, "/");
+		}
+
+		throw redirect(303, `/news/${myId}`);
+	}
+};

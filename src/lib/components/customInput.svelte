@@ -8,9 +8,7 @@
 
 <div class="inputes">
 	{#if isTextArea}
-		<textarea required name={myName} id={`myInput${myName}`} cols="30" rows="10">
-			{value}
-		</textarea>
+		<textarea required name={myName} id={`myInput${myName}`} cols="30" rows="10">{value}</textarea>
 	{:else}
 		<input name={myName} {type} id={`myInput${myName}`} {value} required />
 	{/if}

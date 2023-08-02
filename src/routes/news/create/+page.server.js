@@ -15,9 +15,9 @@ export async function load({ parent }) {
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-	createNews: async ({ parent, request, locals: { supabase } }) => {
+	createNews: async ({ request, locals: { supabase, getSession } }) => {
 		/* Get user`s email */
-		const { session } = await parent();
+		const session = await getSession();
 		if (!session) return fail(400);
 
 		/* Get Params */
