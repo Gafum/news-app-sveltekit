@@ -27,7 +27,7 @@
 		align-content: center;
 		margin-top: 8px;
 		.title {
-			max-width: 70%;
+			max-width: 60%;
 		}
 		.img {
 			width: 115px;

@@ -45,7 +45,7 @@
 		align-items: center;
 		align-content: center;
 		gap: 12px;
-		margin-top: 20px;
+		margin: 20px 0 15px;
 		overflow-x: scroll;
 		overflow-y: hidden;
 		a {

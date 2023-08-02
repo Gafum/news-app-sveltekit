@@ -32,6 +32,6 @@ export const actions = {
 			});
 		}
 
-		throw redirect(303, "/");
+		throw redirect(303, "/user");
 	}
 };

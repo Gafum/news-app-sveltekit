@@ -2,6 +2,10 @@ export async function load({ params, locals: { supabase } }) {
 	/* Request */
 	let { data, error } = await supabase.from("news").select("*").eq("id", params.newsId.toString());
 	if (error) return console.log(error);
+	console.log(data);
+	if (!data[0]) {
+		return { message: 404 };
+	}
 
 	/* Create Response */
 	let myResponse = {};

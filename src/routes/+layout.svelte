@@ -1,44 +1,42 @@
 <script>
-	import categoryList from "$lib/const/categoryList.js";
 	import { goto } from "$app/navigation";
-	import CustomInput from "$lib/components/customInput.svelte";
-	let navActive = false;
-	function openNav() {
-		navActive = !navActive;
-	}
-	function closeNav() {
-		if (navActive) {
-			navActive = false;
-		}
-	}
-	function goToSearch(event) {
-		let { myNews } = Object.fromEntries(new FormData(event.target).entries());
-		if (!myNews || myNews.length <= 0) return;
-		event.target.querySelector("input").value = "";
-		closeNav();
-		goto(`/search?text=${myNews}`);
-	}
 </script>
-
-<svelte:document on:click={closeNav} />
 
 <div class="wrapper">
 	<header>
-		<a href="/" class="site-name"> NEWSAPP </a>
-		<button on:click|stopPropagation={openNav}>
-			<div class="open-nav">
-				<div class:active={navActive} />
-			</div>
-		</button>
-
-		<nav class:showen={navActive}>
-			<form on:submit|preventDefault={goToSearch}>
-				<CustomInput placeholder="Find News..." myName="myNews" />
-			</form>
-			{#each categoryList as category}
-				<div><a href="/category/{category}">{category}</a></div>
-			{/each}
-		</nav>
+		<a href="/" class="site-name"> NEWS </a>
+		<div class="btns">
+			<button on:click={() => goto("/search")}>
+				<svg viewBox="0 0 24 24" width="24" height="24">
+					<circle
+						cx="10"
+						cy="10"
+						r="6"
+						fill="none"
+						stroke="#000"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+					/>
+					<path
+						fill="none"
+						stroke="#000"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M14.24 14.24 20 20"
+					/>
+				</svg>
+			</button>
+			<button on:click={() => goto("/user")}>
+				<svg viewBox="0 0 32 36" width="20" height="20">
+					<path
+						stroke-width="2"
+						d="M15.58 2.73A6.25 6.25 0 119.33 9a6.25 6.25 0 016.25-6.24m0-2.73a9 9 0 109 9 9 9 0 00-9-9zM26.67 22.84a2 2 0 012 2c0 4.07-7 8.21-12 8.21H14.67c-5 0-11.94-4.14-11.94-8.21a2 2 0 012-2H26.67m0-2.72H4.74A4.74 4.74 0 000 24.86H0c0 6 8.63 10.94 14.67 10.94h2.07c6 0 14.67-4.9 14.67-10.94h0a4.74 4.74 0 00-4.74-4.74z"
+					/>
+				</svg>
+			</button>
+		</div>
 	</header>
 
 	<main>
@@ -49,7 +47,6 @@
 		<div class="link">
 			<a href="/user">Account</a>
 			<a href="/about">About Us</a>
-			<a href="/publishers">Publishers</a>
 		</div>
 		<div class="powered">Powered by <span>Gafum</span></div>
 	</footer>
@@ -79,78 +76,20 @@
 			font-weight: 700;
 			letter-spacing: 2.4px;
 		}
-		> button {
-			height: 24px;
-		}
-		.open-nav {
-			height: 3px;
-			width: 20px;
-			position: relative;
+
+		.btns {
 			display: flex;
+			gap: 13px;
 			justify-content: center;
 			align-items: center;
 			align-content: center;
-
-			> div {
-				background-color: #000;
-				height: 100%;
-				width: 100%;
-				transition: width 0.2s;
-				&.active {
-					width: 0;
-				}
-				&::before,
-				&::after {
-					content: "";
-					height: 100%;
-					width: 100%;
-					background-color: #000;
-					position: absolute;
-					transition: all 0.2s;
-				}
-
-				&::before {
-					top: 220%;
-					left: 0;
-				}
-				&.active::before {
-					top: 0;
-					transform: rotate(45deg);
-				}
-
-				&::after {
-					bottom: 220%;
-					left: 0;
-				}
-				&.active::after {
-					bottom: 0;
-					transform: rotate(-45deg);
-				}
+			button {
+				width: 20px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				align-content: center;
 			}
-		}
-	}
-
-	nav {
-		transition: all 0.4s;
-		transform: scaleY(0);
-		transform-origin: top;
-		position: absolute;
-		width: 100%;
-		top: 100%;
-		left: 0;
-		background-color: white;
-		padding: 20px;
-		border-bottom: 1px solid #ededed;
-		display: flex;
-		flex-direction: column;
-		gap: 26px;
-		&.showen {
-			transform: scaleY(1);
-		}
-		a {
-			text-transform: uppercase;
-			font-size: 22px;
-			font-weight: 700;
 		}
 	}
 

@@ -14,6 +14,7 @@ export const actions = {
 			email,
 			password
 		});
+		
 		/* Catch error */
 		if (error) {
 			if (error instanceof AuthApiError && error.status === 400) {
@@ -32,6 +33,6 @@ export const actions = {
 			});
 		}
 		
-		throw redirect(303, "/");
+		throw redirect(303, "/user");
 	}
 };

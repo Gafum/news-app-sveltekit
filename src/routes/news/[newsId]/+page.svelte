@@ -11,12 +11,18 @@
 	}
 </script>
 
-<div style="background-color: #096ffa;" class="one-news-img" />
-<div class="wrapper">
-	<h2>{title}</h2>
-	<h4 class="create-by">{author}</h4>
-	<p>{content}</p>
-</div>
+{#if data.message == "404"}
+	<div class="wrapper">
+		<h2>Page not found</h2>
+	</div>
+{:else}
+	<div style="background-color: #096ffa;" class="one-news-img" />
+	<div class="wrapper">
+		<h2>{title}</h2>
+		<h4 class="create-by">{author}</h4>
+		<p>{content}</p>
+	</div>
+{/if}
 
 <style>
 	.wrapper {
