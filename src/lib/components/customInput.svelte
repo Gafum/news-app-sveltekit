@@ -1,11 +1,19 @@
 <script>
 	export let myName = "",
 		placeholder = "",
-		type = "text";
+		type = "text",
+		isTextArea = false,
+		value = "";
 </script>
 
 <div class="inputes">
-	<input name={myName} {type} id={`myInput${myName}`} required on:click|stopPropagation />
+	{#if isTextArea}
+		<textarea required name={myName} id={`myInput${myName}`} cols="30" rows="10">
+			{value}
+		</textarea>
+	{:else}
+		<input name={myName} {type} id={`myInput${myName}`} {value} required />
+	{/if}
 	<label for={`myInput${myName}`}>{placeholder}</label>
 </div>
 
@@ -13,7 +21,8 @@
 	.inputes {
 		width: 100%;
 		position: relative;
-		input {
+		input,
+		textarea {
 			text-align: left;
 			border-radius: 8px;
 			font-size: 16px;
