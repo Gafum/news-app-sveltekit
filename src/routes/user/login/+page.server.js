@@ -1,4 +1,4 @@
-import { redirect } from "@sveltejs/kit";
+import { redirect, error } from "@sveltejs/kit";
 import { AuthApiError } from "@supabase/supabase-js";
 
 export const actions = {
@@ -9,26 +9,18 @@ export const actions = {
 		const password = params.get("password");
 
 		/* request */
-		let { error } = await supabase.auth.signInWithPassword({
+		let { error: err } = await supabase.auth.signInWithPassword({
 			email,
 			password
 		});
 
 		/* Catch error */
-		if (error) {
-			if (error instanceof AuthApiError && error.status === 400) {
-				return fail(400, {
-					error: "Invalid credentials.",
-					values: {
-						email
-					}
-				});
+		if (err) {
+			if (err instanceof AuthApiError && error.status === 400) {
+				throw error(400, { message: "Write right data!" });
 			}
-			return fail(500, {
-				error: "Server error. Try again later.",
-				values: {
-					email
-				}
+			throw error(500, {
+				message: "Server error. Try again later."
 			});
 		}
 

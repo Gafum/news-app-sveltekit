@@ -1,4 +1,4 @@
-import { redirect, fail } from "@sveltejs/kit";
+import { redirect, error } from "@sveltejs/kit";
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ url, locals: { supabase } }) {
@@ -7,14 +7,13 @@ export async function load({ url, locals: { supabase } }) {
 	if (!searchText) return { data: [] };
 
 	/* Request */
-	let { data, error } = await supabase
+	let { data, error: err } = await supabase
 		.from("news")
 		.select("*")
 		.textSearch("content", searchText.toString());
 
 	/* Catch Error */
-	if (error) {
-		console.log(error);
+	if (err) {
 		return { data: [] };
 	}
 
@@ -27,7 +26,7 @@ export const actions = {
 		/* Get Params */
 		const data = await request.formData();
 		let searchText = data.get("searchText");
-		if (!searchText) return fail(400);
+		if (!searchText) throw error(400, { message: "Give the right data" });
 
 		throw redirect(303, `/search?text=${searchText}`);
 	}

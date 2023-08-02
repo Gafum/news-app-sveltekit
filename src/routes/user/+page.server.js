@@ -1,16 +1,19 @@
-import { fail, redirect } from "@sveltejs/kit";
+import { error, redirect } from "@sveltejs/kit";
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ parent, locals: { supabase } }) {
+	/* Get params */
 	const { session } = await parent();
 	if (!session) return { myNews: [] };
 
-	let { data, error } = await supabase
+	/* Request */
+	let { data, error: err } = await supabase
 		.from("news")
 		.select("*")
 		.eq("created_by", session.user.email.toString());
-	if (error) {
-		console.log(error);
+
+	/* catch error */
+	if (err) {
 		return { myNews: [] };
 	}
 	return { myNews: data };
@@ -19,10 +22,11 @@ export async function load({ parent, locals: { supabase } }) {
 /** @type {import('./$types').Actions} */
 export const actions = {
 	logout: async ({ locals: { supabase } }) => {
-		let { error } = await supabase.auth.signOut();
-		if (error) {
-			console.log(error);
-			return fail(500);
+		/* Request */
+		let { error: err } = await supabase.auth.signOut();
+
+		if (err) {
+			throw error(500, { message: "Server error. Try again later." });
 		}
 		throw redirect(303, "/");
 	}
