@@ -36,12 +36,13 @@ export async function load({ url, parent, locals: { supabase } }) {
 	}
 
 	/* Create response */
-	let myResponse = { myTitle: "", content: "", myClass: "" };
+	let myResponse = { myTitle: "", content: "", myClass: "", imgURL: undefined };
 
 	try {
 		myResponse.myTitle = news.title;
 		myResponse.content = news.content;
 		myResponse.myClass = news.class;
+		myResponse.imgURL = news.imgURL;
 	} catch (e) {
 		throw error(500, { message: "Server error" });
 	}
@@ -61,6 +62,7 @@ export const actions = {
 		let title = params.get("myTitle");
 		let content = params.get("myContent");
 		let myClass = params.get("myClass");
+		let imgURL = params.get("imgURL");
 		if (!title || !content || !categoryList.includes(myClass)) {
 			throw error(400, "Give the right data");
 		}
@@ -73,7 +75,7 @@ export const actions = {
 		/* main request */
 		const { error: err } = await supabase
 			.from("news")
-			.update([{ title, content, class: myClass }])
+			.update([{ title, content, imgURL, class: myClass }])
 			.eq("id", myId)
 			.select();
 

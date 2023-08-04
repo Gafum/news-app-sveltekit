@@ -21,11 +21,15 @@ export const actions = {
 			throw error(400, { message: "You are not login" });
 		}
 
+		console.log("hi");
+
 		/* Get Params */
 		const params = await request.formData();
 		let title = params.get("myTitle");
 		let content = params.get("myContent");
 		let myClass = params.get("myClass");
+		let imgURL = params.get("imgURL");
+		console.log(imgURL);
 		if (!title || !content || !categoryList.includes(myClass)) {
 			throw error(400, { message: "Give the right data" });
 		}
@@ -33,7 +37,9 @@ export const actions = {
 		/* main request */
 		const { data, error: err } = await supabase
 			.from("news")
-			.insert([{ title, content, class: myClass, created_by: session.user.email.toString() }])
+			.insert([
+				{ title, content, imgURL, class: myClass, created_by: session.user.email.toString() }
+			])
 			.select();
 
 		if (err) {

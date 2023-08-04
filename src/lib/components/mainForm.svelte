@@ -4,6 +4,7 @@
 	import CustomButtom from "$lib/components/customButtom.svelte";
 	export let myTitle = "",
 		content = "",
+		imgURL = "",
 		submitText = "Create",
 		myClass = categoryList[0];
 </script>
@@ -11,6 +12,13 @@
 <div class="main-form">
 	<CustomInput myName="myTitle" placeholder="Title..." value={myTitle} />
 	<CustomInput myName="myContent" placeholder="Content..." isTextArea={true} value={content} />
+	<CustomInput
+		myName="imgURL"
+		placeholder="Image URL"
+		value={imgURL}
+		isRequired={false}
+		type="url"
+	/>
 	<select name="myClass" required value={myClass}>
 		{#each categoryList as category}
 			<option value={category}>{category}</option>

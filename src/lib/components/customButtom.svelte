@@ -1,7 +1,7 @@
 <script>
 	import { createEventDispatcher } from "svelte";
 
-	export let title = "CLick";
+	export let title = "Click";
 	const dispatcher = createEventDispatcher();
 	function clicked() {
 		dispatcher("click");

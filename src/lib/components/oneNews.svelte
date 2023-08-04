@@ -1,6 +1,6 @@
 <script>
 	export let title = "",
-		myImg = "#000",
+		imgURL = undefined,
 		myClass = "",
 		myDescription = "";
 </script>
@@ -10,10 +10,12 @@
 		<a href="/category/{myClass.toLowerCase()}">{myClass}</a>
 	</h3>
 	<div class="main-content">
-		<h2 class="title">{title}</h2>
-		<div class="img" style="background-color: {myImg};" />
+		<h2 class="title" class:full={!imgURL}>{title.slice(0, 100)}</h2>
+		{#if imgURL}
+			<div class="img" style="background-image: url({imgURL});" />
+		{/if}
 	</div>
-	<p class="description">{myDescription.slice(0, 150)}</p>
+	<p class="description">{myDescription.slice(0, 125)}</p>
 </div>
 
 <style lang="scss">
@@ -28,10 +30,17 @@
 		margin-top: 8px;
 		.title {
 			max-width: 60%;
+			&.full {
+				width: 100%;
+				max-width: 100%;
+			}
 		}
+
 		.img {
 			width: 115px;
 			height: 92px;
+			background-size: cover;
+			background-position: center;
 		}
 	}
 

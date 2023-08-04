@@ -6,7 +6,12 @@
 <div class="newsList">
 	{#each newsList as news}
 		<a href="/news/{news.id}">
-			<OneNews title={news.title} myClass={news.class} myDescription={news.content} />
+			<OneNews
+				title={news.title}
+				myClass={news.class}
+				myDescription={news.content}
+				imgURL={news.imgURL}
+			/>
 		</a>
 	{:else}
 		<h2>Not Items</h2>

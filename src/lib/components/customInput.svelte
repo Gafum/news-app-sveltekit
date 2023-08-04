@@ -3,14 +3,17 @@
 		placeholder = "",
 		type = "text",
 		isTextArea = false,
-		value = "";
+		value = "",
+		isRequired = true;
 </script>
 
 <div class="inputes">
 	{#if isTextArea}
-		<textarea required name={myName} id={`myInput${myName}`} cols="30" rows="10">{value}</textarea>
+		<textarea required={isRequired} name={myName} id={`myInput${myName}`} cols="30" rows="10"
+			>{value}</textarea
+		>
 	{:else}
-		<input name={myName} {type} id={`myInput${myName}`} {value} required />
+		<input name={myName} {type} id={`myInput${myName}`} {value} required={isRequired} />
 	{/if}
 	<label for={`myInput${myName}`}>{placeholder}</label>
 </div>

@@ -25,11 +25,12 @@ export async function load({ parent, params, locals: { supabase } }) {
 	}
 
 	/* Create Response */
-	let myResponse = { title: "", content: "", author: "", myNews: false };
+	let myResponse = { title: "", content: "", author: "", myNews: false, imgURL: undefined };
 	try {
 		myResponse.title = data[0].title;
 		myResponse.content = data[0].content;
 		myResponse.author = data[0].created_by;
+		myResponse.imgURL = data[0].imgURL || undefined;
 		serverMyNews = myResponse.myNews = data[0].created_by === session.user.email;
 	} catch (err) {
 		throw error(500, { message: "Server error" });
@@ -48,5 +49,20 @@ export const actions = {
 			throw error(404, { message: "Not Found" });
 		}
 		throw redirect(301, `/news/edit?id=${myId}`);
+	},
+	deleteNews: async ({ locals: { supabase } }) => {
+		if (!serverMyNews) {
+			throw error(400, { message: "Not allowed" });
+		}
+		if (!myId) {
+			throw error(404, { message: "Not Found" });
+		}
+		const { error: err } = await supabase.from("news").delete().eq("id", myId);
+
+		if (err) {
+			throw error(500, { message: "Server error" });
+		}
+
+		throw redirect(301, "/");
 	}
 };
