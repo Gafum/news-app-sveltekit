@@ -1,5 +1,5 @@
 <script>
-	import CustomButtom from "$lib/components/customButtom.svelte";
+	import CustomButton from "$lib/components/customButton.svelte";
 	import { goto } from "$app/navigation";
 	/** @type {import('./$types').PageData} */
 	export let data;
@@ -19,10 +19,7 @@
 			if (!confirm("Do you want to delete this news?")) return;
 			const response = await fetch("?/deleteNews", {
 				method: "POST",
-				headers: {
-					"Content-Type": "application/x-www-form-urlencoded"
-				},
-				body: JSON.stringify({ myData: true })
+				body: "test"
 			});
 			if (response.ok) {
 				console.log("redirect");
@@ -57,7 +54,7 @@
 		<p>{content}</p>
 		{#if myNews}
 			<form action="?/goToUpdate" method="post">
-				<CustomButtom title="Edit this news" />
+				<CustomButton title="Edit this news" />
 			</form>
 		{/if}
 	</div>

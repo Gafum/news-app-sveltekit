@@ -1,5 +1,5 @@
 <script>
-	import CustomButtom from "$lib/components/customButtom.svelte";
+	import CustomButton from "$lib/components/customButton.svelte";
 	import CustomInput from "$lib/components/customInput.svelte";
 </script>
 
@@ -8,7 +8,7 @@
 	<CustomInput myName="email" placeholder="Your Email" type="email" />
 	<CustomInput myName="password" placeholder="password" type="password" />
 	<a href="/user/register">I have not account</a>
-	<CustomButtom title="Log In" />
+	<CustomButton title="Log In" />
 </form>
 
 <style>

@@ -1,6 +1,6 @@
 <script>
 	import { page } from "$app/stores";
-	import CustomButtom from "$lib/components/customButtom.svelte";
+	import CustomButton from "$lib/components/customButton.svelte";
 	import { goto } from "$app/navigation";
 </script>
 
@@ -10,7 +10,7 @@
 	<p>{$page.error.message}</p>
 
 	<div class="error-centre_btn">
-		<CustomButtom style="max-width: 60vw;" on:click={() => goto("/")} title="Go Home" />
+		<CustomButton style="max-width: 60vw;" on:click={() => goto("/")} title="Go Home" />
 	</div>
 </div>
 

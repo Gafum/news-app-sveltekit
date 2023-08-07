@@ -1,7 +1,7 @@
 <script>
 	import CustomInput from "$lib/components/customInput.svelte";
 	import categoryList from "$lib/const/categoryList";
-	import CustomButtom from "$lib/components/customButtom.svelte";
+	import CustomButton from "$lib/components/customButton.svelte";
 	export let myTitle = "",
 		content = "",
 		imgURL = "",
@@ -24,7 +24,7 @@
 			<option value={category}>{category}</option>
 		{/each}
 	</select>
-	<CustomButtom title={submitText} />
+	<CustomButton title={submitText} />
 </div>
 
 <style>

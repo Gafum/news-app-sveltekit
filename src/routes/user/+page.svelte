@@ -1,5 +1,5 @@
 <script>
-	import CustomButtom from "$lib/components/customButtom.svelte";
+	import CustomButton from "$lib/components/customButton.svelte";
 	import ListGenerator from "$lib/components/listGenerator.svelte";
 	import { goto } from "$app/navigation";
 	export let data;
@@ -30,10 +30,10 @@
 			{/if}
 		</div>
 		<form action="?/logout" method="post">
-			<CustomButtom title="Log out" />
+			<CustomButton title="Log out" />
 		</form>
 	{:else}
-		<CustomButtom title="Log In" on:click={() => goto("/user/login")} />
+		<CustomButton title="Log In" on:click={() => goto("/user/login")} />
 	{/if}
 </main>
 

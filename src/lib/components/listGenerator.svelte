@@ -1,10 +1,22 @@
 <script>
+	import { createEventDispatcher } from "svelte";
 	import OneNews from "./oneNews.svelte";
-	export let newsList = [];
+	export let newsList = [],
+		addNews = true;
+	const dispatcher = createEventDispatcher();
+
+	function scroll() {
+		const bottomLine = document.querySelector(".bottom-line");
+		if (bottomLine.getBoundingClientRect().top <= window.innerHeight) {
+			dispatcher("seen-all", { message: { length: newsList.length } });
+		}
+	}
 </script>
 
+<svelte:document on:scroll={scroll} />
+
 <div class="newsList">
-	{#each newsList as news}
+	{#each newsList || [] as news}
 		<a href="/news/{news.id}">
 			<OneNews
 				title={news.title}
@@ -16,6 +28,11 @@
 	{:else}
 		<h2>Not Items</h2>
 	{/each}
+	<h2 class="bottom-line">
+		{#if !addNews}
+			Loading...
+		{/if}
+	</h2>
 </div>
 
 <style>

@@ -1,5 +1,6 @@
 import categoryList from "$lib/const/categoryList";
 import { error } from "@sveltejs/kit";
+import { actions } from "../../+page.server";
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params, locals: { supabase } }) {
@@ -8,7 +9,7 @@ export async function load({ params, locals: { supabase } }) {
 		.from("news")
 		.select("*")
 		.eq("class", params.classId.toString())
-		.range(0, 12);
+		.range(0, 11);
 	if (err) throw error(500, { message: "Server error" });
 	return { data };
 }

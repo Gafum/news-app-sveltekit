@@ -4,13 +4,57 @@
 	import findMax from "$lib/functions/findMax";
 	import categoryList from "$lib/const/categoryList.js";
 	export let data;
+
+	let addNews = false;
+
+	/* Get Top news */
 	let top = { id: "1", title: "Waiting...", class: "Technology", imgURL: undefined },
 		newsList = [];
+
+	/* Set Data */
 	if (data && data.data) {
 		top = data.data[findMax(data.data.map(({ views }) => Number(views)))];
 		newsList = data.data;
 	} else {
 		console.log("404");
+	}
+
+	async function getNews(event) {
+		try {
+			if (addNews) return;
+			addNews = true;
+
+			/* Create data */
+			const formData = new FormData();
+			formData.append("oldLength", event.detail.message.length.toString());
+
+			/* Request */
+			const response = await fetch("?/getNews", {
+				method: "POST",
+				body: formData
+			});
+			if (!response.ok) {
+				throw new Error("Failed to fetch latest news.");
+			}
+
+			/* Prse data */
+			const data = await response.json();
+			let newNews = JSON.parse(JSON.parse(data.data)[0]);
+			if (!newNews) {
+				throw new Error("Failed to fetch latest news.");
+			}
+
+			/* Set Data */
+			if (newsList.length === event.detail.message.length) {
+				if (newNews.length === 0) {
+					return;
+				}
+				newsList = [...newsList, ...newNews];
+			}
+		} catch (error) {
+			console.error("Error deleting news:", error);
+		}
+		addNews = false;
 	}
 </script>
 
@@ -28,7 +72,7 @@
 			<TopNews title={top.title} myClass={top.class} imgURL={top.imgURL} />
 		</a>
 	{/if}
-	<ListGenerator {newsList} />
+	<ListGenerator {newsList} on:seen-all={getNews} {addNews} />
 </div>
 
 <style lang="scss">

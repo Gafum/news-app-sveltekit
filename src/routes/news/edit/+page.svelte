@@ -1,5 +1,5 @@
 <script>
-	import CustomButtom from "$lib/components/customButtom.svelte";
+	import CustomButton from "$lib/components/customButton.svelte";
 	import MainForm from "$lib/components/mainForm.svelte";
 	import { goto } from "$app/navigation";
 
@@ -11,7 +11,7 @@
 		<MainForm {...data.data} submitText="Update" />
 	</form>
 {:else}
-	<CustomButtom title="Login" on:click={() => goto("/login")} />
+	<CustomButton title="Login" on:click={() => goto("/login")} />
 {/if}
 
 <style>

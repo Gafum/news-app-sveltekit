@@ -1,20 +1,9 @@
 <script>
-	import ListGenerator from "$lib/components/listGenerator.svelte";
-	export let data;
-	let newsList = [];
-	if (data && data.data) {
-		newsList = data.data;
-	} else {
-		console.log("404");
-	}
+	import { onMount } from "svelte";
+
+	import { goto } from "$app/navigation";
+
+	onMount(() => goto("/"));
 </script>
 
-<div class="news-wrapper">
-	<ListGenerator {newsList} />
-</div>
-
-<style lang="scss">
-	.news-wrapper {
-		padding: 0 20px;
-	}
-</style>
+<a href="/">Go home...</a>
