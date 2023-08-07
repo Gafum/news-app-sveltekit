@@ -6,7 +6,7 @@ let myId = 0,
 export async function load({ parent, params, locals: { supabase } }) {
 	let { session } = await parent();
 	if (!session) {
-		session.user.email = "GO";
+		session = { user: { email: "no" } };
 	}
 
 	myId = params.newsId.toString();
@@ -31,7 +31,7 @@ export async function load({ parent, params, locals: { supabase } }) {
 		myResponse.content = data[0].content;
 		myResponse.author = data[0].created_by;
 		myResponse.imgURL = data[0].imgURL || undefined;
-		serverMyNews = myResponse.myNews = data[0].created_by === session.user.email;
+		serverMyNews = myResponse.myNews = data[0].created_by === session?.user.email;
 	} catch (err) {
 		throw error(500, { message: "Server error" });
 	}

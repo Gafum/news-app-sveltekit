@@ -9,12 +9,12 @@
 	}
 </script>
 
-<div class="wrapper">
+<div class="news-wrapper">
 	<ListGenerator {newsList} />
 </div>
 
 <style lang="scss">
-	.wrapper {
+	.news-wrapper {
 		padding: 0 20px;
 	}
 </style>

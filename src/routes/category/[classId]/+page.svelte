@@ -15,13 +15,13 @@
 	}
 </script>
 
-<div class="wrapper">
+<div class="cagtegory-wrapper">
 	<h3>{$page.params.classId.toString().toUpperCase()}</h3>
 	<ListGenerator {newsList} />
 </div>
 
 <style>
-	.wrapper {
+	.cagtegory-wrapper {
 		padding: 20px;
 	}
 	h3 {

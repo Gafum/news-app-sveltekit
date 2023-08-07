@@ -1,12 +1,13 @@
 <script>
 	export let title = "",
-		myClass = "";
+		myClass = "",
+		imgURL = undefined;
 </script>
 
 <div>
 	<h3><a href="/category/{myClass.toLowerCase()}">{myClass}</a></h3>
 	<h2 class="title">{title}</h2>
-	<div class="img" />
+	<div class="img" style="background-image: url({imgURL});" />
 </div>
 
 <style>
@@ -25,5 +26,8 @@
 		width: 100%;
 		height: 300px;
 		background-color: #096ffa;
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
 	}
 </style>

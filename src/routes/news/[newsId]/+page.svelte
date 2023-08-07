@@ -11,6 +11,7 @@
 			author = data.author;
 			myNews = data.myNews;
 		}
+		console.log(myNews);
 	}
 
 	async function deleteNews() {
@@ -37,7 +38,7 @@
 	{#if imgURL}
 		<div style="background-image: url({imgURL});" class="one-news-img" />
 	{/if}
-	<div class="wrapper">
+	<div class="news-wrapper">
 		<h2>
 			{title}
 		</h2>
@@ -67,7 +68,7 @@
 {/if}
 
 <style lang="scss">
-	.wrapper {
+	.news-wrapper {
 		padding: 0 20px;
 	}
 	.one-news-img {
@@ -75,7 +76,9 @@
 		width: 100%;
 		border-bottom-left-radius: 20px;
 		border-bottom-right-radius: 20px;
+		background-position: center;
 		background-size: cover;
+		background-repeat: no-repeat;
 	}
 
 	h2,

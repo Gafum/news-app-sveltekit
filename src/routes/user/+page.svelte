@@ -72,6 +72,7 @@
 				width: 40px;
 				text-align: right;
 				padding-right: 2px;
+				transition: font-weigth 0.4s;
 			}
 		}
 	}
@@ -79,5 +80,16 @@
 		border-top: 1px solid #8d8d94;
 		margin-top: 40px;
 		padding-top: 20px;
+	}
+
+	@media (pointer: fine) {
+		.plus-btn:hover {
+			font-weight: bold;
+		}
+	}
+	@media (pointer: coarse) {
+		.plus-btn:active {
+			font-weight: bold;
+		}
 	}
 </style>

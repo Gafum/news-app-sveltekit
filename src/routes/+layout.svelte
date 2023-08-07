@@ -2,7 +2,7 @@
 	import { goto } from "$app/navigation";
 </script>
 
-<div class="wrapper">
+<div class="layout-wrapper">
 	<header>
 		<a href="/" class="site-name"> NEWS </a>
 		<div class="btns">
@@ -53,7 +53,7 @@
 </div>
 
 <style lang="scss">
-	.wrapper {
+	.layout-wrapper {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -75,6 +75,7 @@
 			font-size: 24px;
 			font-weight: 700;
 			letter-spacing: 2.4px;
+			transition: opacity 0.3s;
 		}
 
 		.btns {
@@ -90,6 +91,17 @@
 				align-items: center;
 				align-content: center;
 			}
+		}
+	}
+
+	@media (pointer: fine) {
+		.site-name:hover {
+			opacity: 0.65;
+		}
+	}
+	@media (pointer: coarse) {
+		.site-name:active {
+			opacity: 0.65;
 		}
 	}
 

@@ -43,7 +43,11 @@
 		border: 1px solid #000;
 		padding: 12px;
 		width: 100%;
-		font-size: 18px;
 		cursor: pointer;
+		border-radius: 8px;
+	}
+	option {
+		text-align: left;
+		font-size: 16px;
 	}
 </style>

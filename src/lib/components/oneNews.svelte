@@ -21,6 +21,7 @@
 <style lang="scss">
 	.oneNews {
 		margin-top: 24px;
+		transition: opacity 0.2s;
 	}
 	.main-content {
 		display: flex;
@@ -41,6 +42,7 @@
 			height: 92px;
 			background-size: cover;
 			background-position: center;
+			background-repeat: no-repeat;
 		}
 	}
 

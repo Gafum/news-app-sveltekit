@@ -4,12 +4,12 @@
 	import { goto } from "$app/navigation";
 </script>
 
-<div class="wrapper">
+<div class="error-centre">
 	<h1>ERROR {$page.status}</h1>
 
 	<p>{$page.error.message}</p>
 
-	<div class="wrapper_btn">
+	<div class="error-centre_btn">
 		<CustomButtom style="max-width: 60vw;" on:click={() => goto("/")} title="Go Home" />
 	</div>
 </div>
@@ -19,7 +19,7 @@
 		font-weight: bold;
 		font-size: 40px;
 	}
-	.wrapper {
+	.error-centre {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -28,7 +28,7 @@
 		gap: 40px;
 		padding: 100px 20px;
 	}
-	.wrapper_btn {
+	.error-centre_btn {
 		min-width: 240px;
 		max-width: 60vw;
 	}

@@ -5,7 +5,7 @@
 	export let data;
 </script>
 
-<div class="wrapper">
+<div class="search-wrapper">
 	<form method="post" action="?/search">
 		<CustomInput myName="searchText" placeholder="Find News..." />
 	</form>
@@ -17,7 +17,7 @@
 </div>
 
 <style>
-	.wrapper {
+	.search-wrapper {
 		padding: 32px 20px;
 	}
 </style>

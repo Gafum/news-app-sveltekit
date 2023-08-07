@@ -5,15 +5,40 @@
 		isTextArea = false,
 		value = "",
 		isRequired = true;
+
+	let isActive = false;
+	function changeText({ target: { value } }) {
+		if (!value) return (isActive = false);
+		if (value.length > 0) {
+			isActive = true;
+		} else {
+			isActive = false;
+		}
+	}
+	changeText({ target: { value } });
 </script>
 
 <div class="inputes">
 	{#if isTextArea}
-		<textarea required={isRequired} name={myName} id={`myInput${myName}`} cols="30" rows="10"
-			>{value}</textarea
+		<textarea
+			class:active={isActive}
+			on:input={changeText}
+			required={isRequired}
+			name={myName}
+			id={`myInput${myName}`}
+			cols="30"
+			rows="10">{value}</textarea
 		>
 	{:else}
-		<input name={myName} {type} id={`myInput${myName}`} {value} required={isRequired} />
+		<input
+			class:active={isActive}
+			on:input={changeText}
+			name={myName}
+			{type}
+			id={`myInput${myName}`}
+			{value}
+			required={isRequired}
+		/>
 	{/if}
 	<label for={`myInput${myName}`}>{placeholder}</label>
 </div>
@@ -31,7 +56,7 @@
 			width: 100%;
 			border: 1px solid #000;
 			&:focus ~ label,
-			&:valid ~ label {
+			&.active ~ label {
 				color: #000;
 				transform: translateX(-5%) translateY(-95%) scale(0.75);
 				background-color: white;
