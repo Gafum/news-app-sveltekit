@@ -10,6 +10,7 @@ export async function load({ parent, locals: { supabase } }) {
 	let { data, error: err } = await supabase
 		.from("news")
 		.select("*")
+		.order("created_at", { ascending: false })
 		.eq("created_by", session.user.email.toString());
 
 	/* catch error */

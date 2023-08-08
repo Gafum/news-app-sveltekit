@@ -45,6 +45,7 @@
 
 	<footer>
 		<div class="link">
+			<a href="/">Home</a>
 			<a href="/user">Account</a>
 			<a href="/about">About Us</a>
 		</div>
@@ -90,6 +91,18 @@
 				justify-content: center;
 				align-items: center;
 				align-content: center;
+				transition: opacity 0.3s;
+
+				@media (pointer: fine) {
+					&:hover {
+						opacity: 0.5;
+					}
+				}
+				@media (pointer: coarse) {
+					&:active {
+						opacity: 0.5;
+					}
+				}
 			}
 		}
 	}
