@@ -60,7 +60,7 @@
 
 <div class="wrapper">
 	<nav>
-		{#each categoryList as category}
+		{#each categoryList as category (category)}
 			<a href="/category/{category}">{category}</a>
 		{/each}
 	</nav>

@@ -16,7 +16,7 @@
 <svelte:document on:scroll={scroll} />
 
 <div class="newsList">
-	{#each newsList || [] as news}
+	{#each newsList || [] as news (news.id)}
 		<a href="/news/{news.id}">
 			<OneNews
 				title={news.title}

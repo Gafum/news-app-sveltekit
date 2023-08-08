@@ -20,7 +20,7 @@
 		type="url"
 	/>
 	<select name="myClass" required value={myClass}>
-		{#each categoryList as category}
+		{#each categoryList as category (category)}
 			<option value={category}>{category}</option>
 		{/each}
 	</select>
