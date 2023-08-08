@@ -1,6 +1,7 @@
 <script>
 	import { createEventDispatcher } from "svelte";
 	import OneNews from "./oneNews.svelte";
+	import { fade } from "svelte/transition";
 	export let newsList = [],
 		addNews = true;
 	const dispatcher = createEventDispatcher();
@@ -17,7 +18,7 @@
 
 <div class="newsList">
 	{#each newsList || [] as news (news.id)}
-		<a href="/news/{news.id}">
+		<a href="/news/{news.id}" transition:fade={{ duration: 200 }}>
 			<OneNews
 				title={news.title}
 				myClass={news.class}

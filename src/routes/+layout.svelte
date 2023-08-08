@@ -4,7 +4,7 @@
 
 <div class="layout-wrapper">
 	<header>
-		<a href="/" class="site-name"> NEWS </a>
+		<a data-sveltekit-preload-data href="/" class="site-name"> NEWS </a>
 		<div class="btns">
 			<button on:click={() => goto("/search")}>
 				<svg viewBox="0 0 24 24" width="24" height="24">
