@@ -1,5 +1,4 @@
 import { redirect, error } from "@sveltejs/kit";
-import { AuthApiError } from "@supabase/supabase-js";
 
 export const actions = {
 	login: async ({ request, locals: { supabase } }) => {
@@ -16,7 +15,7 @@ export const actions = {
 
 		/* Catch error */
 		if (err) {
-			if (err instanceof AuthApiError && error.status === 400) {
+			if (err.status === 400) {
 				throw error(400, { message: "Write right data!" });
 			}
 			throw error(500, {
