@@ -1,6 +1,6 @@
 <script>
-	import ListGenerator from "$lib/components/ListGenerator.svelte";
-	import CustomInput from "../../lib/components/customInput.svelte";
+	import ListGenerator from "$lib/components/listGenerator.svelte";
+	import CustomInput from "$lib/components/customInput.svelte";
 	/** @type {import('./$types').PageData} */
 	export let data;
 </script>
