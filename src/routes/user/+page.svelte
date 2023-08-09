@@ -39,6 +39,10 @@
 <style lang="scss">
 	main {
 		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 20px;
 	}
 	h1 {
 		text-align: center;
@@ -48,7 +52,6 @@
 	}
 	.myNews {
 		border-top: 1px solid #8d8d94;
-		margin-top: 20px;
 		padding-top: 20px;
 		display: flex;
 		flex-direction: column;
@@ -77,7 +80,7 @@
 	}
 	form {
 		border-top: 1px solid #8d8d94;
-		margin-top: 40px;
+		margin-top: 20px;
 		padding-top: 20px;
 	}
 

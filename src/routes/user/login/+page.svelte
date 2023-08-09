@@ -19,7 +19,7 @@
 		justify-content: center;
 		align-items: center;
 		align-content: center;
-		gap: 10px;
+		gap: 15px;
 	}
 	a {
 		text-decoration: underline;

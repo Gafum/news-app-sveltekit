@@ -45,7 +45,7 @@
 
 	<footer>
 		<div class="link">
-			<a href="/">Home</a>
+			<a href="/" data-sveltekit-preload-data>Home</a>
 			<a href="/user">Account</a>
 			<a href="/about">About Us</a>
 		</div>
