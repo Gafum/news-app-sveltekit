@@ -7,7 +7,7 @@
 	<h2>Log In</h2>
 	<CustomInput myName="email" placeholder="Your Email" type="email" />
 	<CustomInput myName="password" placeholder="password" type="password" />
-	<a href="/user/register">I have not account</a>
+	<a href="/user/register">Create account</a>
 	<CustomButton title="Log In" />
 </form>
 

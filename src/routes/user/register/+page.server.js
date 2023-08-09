@@ -2,7 +2,7 @@ import { redirect, error } from "@sveltejs/kit";
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-	login: async ({ request, locals: { supabase } }) => {
+	register: async ({ request, locals: { supabase } }) => {
 		/* Get Params */
 		const params = await request.formData();
 		const email = params.get("email");
@@ -16,6 +16,7 @@ export const actions = {
 
 		/* Catch error */
 		if (err) {
+			console.log("my err:", err);
 			if (err.status === 400) {
 				throw error(400, { message: "Write right data!" });
 			}

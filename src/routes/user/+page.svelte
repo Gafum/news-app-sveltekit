@@ -20,13 +20,11 @@
 				<h2>My News <button class="plus-btn" on:click={() => goto("/news/create")}>+</button></h2>
 				<ListGenerator newsList={myNews} />
 			{:else}
-				<h2>You don't have news</h2>
-				<p>
-					But you can create them here:
-					<button style="font-weight: bold;" on:click={() => goto("/news/create")}>
-						Create News
-					</button>
-				</p>
+				<h3>You don't have news</h3>
+				<p>But you can create them here:</p>
+				<div style="width: 50%; max-width: 250px;">
+					<CustomButton title="Create News" on:click={() => goto("/news/create")} />
+				</div>
 			{/if}
 		</div>
 		<form action="?/logout" method="post">
@@ -34,6 +32,7 @@
 		</form>
 	{:else}
 		<CustomButton title="Log In" on:click={() => goto("/user/login")} />
+		<CustomButton title="Register" on:click={() => goto("/user/register")} />
 	{/if}
 </main>
 

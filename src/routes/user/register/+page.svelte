@@ -3,11 +3,11 @@
 	import CustomInput from "$lib/components/customInput.svelte";
 </script>
 
-<form action="?/login" method="post">
+<form action="?/register" method="post">
 	<h2>Register</h2>
 	<CustomInput myName="email" placeholder="Your Email" type="email" />
 	<CustomInput myName="password" placeholder="password" type="password" />
-	<a href="/user/login">Account already exist!</a>
+	<a href="/user/login">I already have an account</a>
 	<CustomButton title="Sing Up" />
 </form>
 
